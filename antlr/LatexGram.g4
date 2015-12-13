@@ -7,6 +7,7 @@ expr
   | pack          # packed
   | expr MUL expr # Mul
   | pack pack     # iMul
+  | atom atom     # iMul1
   | expr '^' atom # pow
   | expr ADD expr # add
   | expr SUB expr # sub
@@ -21,8 +22,6 @@ pack
 
 atom
   : NUM | ZERO | ONE | VAR
-  | VAR atom
-  | atom VAR
   | '{' expr '}' ;
 
 MUL : '*' | '\\times' | '\\cdot' ;
