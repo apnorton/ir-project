@@ -10,23 +10,53 @@ class LatexGramVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by LatexGramParser#Add.
+    # Visit a parse tree produced by LatexGramParser#add.
     def visitAdd(self, ctx):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by LatexGramParser#Mult.
-    def visitMult(self, ctx):
+    # Visit a parse tree produced by LatexGramParser#div.
+    def visitDiv(self, ctx):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by LatexGramParser#Var.
-    def visitVar(self, ctx):
+    # Visit a parse tree produced by LatexGramParser#sub.
+    def visitSub(self, ctx):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by LatexGramParser#Int.
-    def visitInt(self, ctx):
+    # Visit a parse tree produced by LatexGramParser#Mul.
+    def visitMul(self, ctx):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LatexGramParser#atomic.
+    def visitAtomic(self, ctx):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LatexGramParser#pow.
+    def visitPow(self, ctx):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LatexGramParser#iMul.
+    def visitIMul(self, ctx):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LatexGramParser#packed.
+    def visitPacked(self, ctx):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LatexGramParser#pack.
+    def visitPack(self, ctx):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LatexGramParser#atom.
+    def visitAtom(self, ctx):
         return self.visitChildren(ctx)
 
 

@@ -13,39 +13,93 @@ class LatexGramListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by LatexGramParser#Add.
+    # Enter a parse tree produced by LatexGramParser#add.
     def enterAdd(self, ctx):
         pass
 
-    # Exit a parse tree produced by LatexGramParser#Add.
+    # Exit a parse tree produced by LatexGramParser#add.
     def exitAdd(self, ctx):
         pass
 
 
-    # Enter a parse tree produced by LatexGramParser#Mult.
-    def enterMult(self, ctx):
+    # Enter a parse tree produced by LatexGramParser#div.
+    def enterDiv(self, ctx):
         pass
 
-    # Exit a parse tree produced by LatexGramParser#Mult.
-    def exitMult(self, ctx):
-        pass
-
-
-    # Enter a parse tree produced by LatexGramParser#Var.
-    def enterVar(self, ctx):
-        pass
-
-    # Exit a parse tree produced by LatexGramParser#Var.
-    def exitVar(self, ctx):
+    # Exit a parse tree produced by LatexGramParser#div.
+    def exitDiv(self, ctx):
         pass
 
 
-    # Enter a parse tree produced by LatexGramParser#Int.
-    def enterInt(self, ctx):
+    # Enter a parse tree produced by LatexGramParser#sub.
+    def enterSub(self, ctx):
         pass
 
-    # Exit a parse tree produced by LatexGramParser#Int.
-    def exitInt(self, ctx):
+    # Exit a parse tree produced by LatexGramParser#sub.
+    def exitSub(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by LatexGramParser#Mul.
+    def enterMul(self, ctx):
+        pass
+
+    # Exit a parse tree produced by LatexGramParser#Mul.
+    def exitMul(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by LatexGramParser#atomic.
+    def enterAtomic(self, ctx):
+        pass
+
+    # Exit a parse tree produced by LatexGramParser#atomic.
+    def exitAtomic(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by LatexGramParser#pow.
+    def enterPow(self, ctx):
+        pass
+
+    # Exit a parse tree produced by LatexGramParser#pow.
+    def exitPow(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by LatexGramParser#iMul.
+    def enterIMul(self, ctx):
+        pass
+
+    # Exit a parse tree produced by LatexGramParser#iMul.
+    def exitIMul(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by LatexGramParser#packed.
+    def enterPacked(self, ctx):
+        pass
+
+    # Exit a parse tree produced by LatexGramParser#packed.
+    def exitPacked(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by LatexGramParser#pack.
+    def enterPack(self, ctx):
+        pass
+
+    # Exit a parse tree produced by LatexGramParser#pack.
+    def exitPack(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by LatexGramParser#atom.
+    def enterAtom(self, ctx):
+        pass
+
+    # Exit a parse tree produced by LatexGramParser#atom.
+    def exitAtom(self, ctx):
         pass
 
 

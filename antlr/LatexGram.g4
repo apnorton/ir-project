@@ -1,8 +1,29 @@
 grammar LatexGram;
 
+s : expr;
+
+expr 
+  : atom          # atomic
+  | pack          # packed
+  | expr MUL expr # Mul
+  | pack pack     # iMul
+  | expr '^' atom # pow
+  | expr ADD expr # add
+  | expr SUB expr # sub
+  | expr DIV expr # div
+  ;
+
+
+pack
+  : '(' expr ')'
+  | '[' expr ']'
+  ;
+
 atom
   : NUM | ZERO | ONE | VAR
-  : '{' tex '}' ;
+  | VAR atom
+  | atom VAR
+  | '{' expr '}' ;
 
 MUL : '*' | '\\times' | '\\cdot' ;
 ADD : '+' ;
@@ -11,10 +32,9 @@ DIV : '/' ;
 
 
 NUM : [0-9]+ ;
-ZERO: 0;
-ONE : 1;
+ZERO: '0';
+ONE : '1';
 
-WS : [ \t\r\n]+ -> skip ;
 
 VAR 
   : [a-zA-Z]
@@ -41,3 +61,6 @@ VAR
   | '\\psi'
   | '\\omega'
   ;
+
+
+WS : [ \t\r\n]+ -> skip ;
