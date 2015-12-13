@@ -1,0 +1,23 @@
+grammar T;
+
+s : r;
+
+r : r MUL r     # Mul
+  | r ADD r     # Add
+  | r DIV r     # Div
+  | r SUB r     # Sub
+  | '(' r ')'   # Group
+  | INT         # Int 
+  ;
+
+MUL : '*';
+ADD : '+';
+DIV : '/';
+SUB : '-';
+
+
+WS : [ \t\r\n]+ -> skip ;
+INT : DIGIT+;
+
+fragment
+DIGIT: [0-9];
