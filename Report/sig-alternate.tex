@@ -254,74 +254,39 @@ selecting a "target" expression and then searching for modified versions of the 
 
 \section{Limitations}
 There are a number of limitations associated with our work here. Some of them are inherent to the field,
-some are a result of our choice of approach, and some are of our particular implementation. Due to the newness
+some are a result of our choice of approach, and some are a result of our particular implementation. Due to the newness
 of the field there is a scarcity of mature tools for solving this kind of problem. There are also few 
 established or annotated datasets available. Due in particular to the problem of identifying mathematical
 synonyms, it is difficult to create relevance judgements for arbitrary queries. 
 
-A particular weakness of our system is that it focuses onmathematical expressions to the complete exclusion
+A particular weakness of our system is that it focuses on mathematical expressions to the complete exclusion
 of any textual information. It is not possible for example for a user to type an expression and to indicate what
 in particular they would like to know about the expression, e.g. it's derivative, or integral, etc. The system would benefit greatly by integration with a standard text search system, perhaps using delimiters to indicate which portions
 of a query contain mathematics and which text.
 
-Although the author of the Cowpie project provided the grammar used to parse the \LaTeX, we used an alternate system
+Although the author of the Cowpie project provided the grammar used to parse \LaTeX, we used an alternate system
 which didn't allow direct translation. As a result we were unable to capture the full complexity of the markup and 
 our searches were limited to a less innteresting subset of the total search space. This led to less interesting results
-but we 
+but we expect that the techniques employed would generalize to more complex expressions without too much difficulty.
 
-1. BETTER RANKING FORMULA - preserve symbols, e.g. x + y = x + 3 <- x
-2. Better index - don't use native fs
+\section{Conclusions and Further Work}
+Beyond the immediate goal of extending the grammar to allow full \LaTeX support there are a few ways that we could 
+add to the system. A way to improve the results returned would be to use a more complex ranking function that takes into
+account more properties of the structure of the expression. For example, currently we group all variables into one
+class regardless of name. This disregards the fact that users will often use the same variable in multiple places, 
+expecting it to have the same meaning. For example, in the expression $\int_{0}^{1}x^{2} dx$ it is important that
+the variable $x$ is the same in both occurences. 
 
-3. Our grammar/parsing is weak and limits functionality to a not very interesting subset of the data.
+A feature that would increase usability would be the ability to mark certain symbols as "free" or "fixed". That is, to
+indicate to the system that the particular variable name used has some special meaning and should not be allowed
+to vary. For example, if the user wants to search for a formula involving standard deviation, they may use the
+variable $\sigma$ because they knokw that is the standard notation. Returning results that appear to be similar but don't
+contain $\sigma$ may decrease relevancy in this case.
 
-\section{Conclusions}
-1. I DON'T KNOW WHAT OUR CONCLUSIONS ARE. CONCLUSIONS ARE PROJECTS SUCK EXAMS4LYFE.
-
-2. GET THE BIBFILE WORKING I'M NOT SURE HOW IT IS SUPPOSED TO BE.
-
-\subsection{Citations}
-Citations to articles \cite{bowman:reasoning,
-clark:pct, braams:babel, herlihy:methodology},
-conference proceedings \cite{clark:pct} or
-books \cite{salas:calculus, Lamport:LaTeX} listed
-in the Bibliography section of your
-article will occur throughout the text of your article.
-You should use BibTeX to automatically produce this bibliography;
-you simply need to insert one of several citation commands with
-a key of the item cited in the proper location in
-the \texttt{.tex} file \cite{Lamport:LaTeX}.
-The key is a short reference you invent to uniquely
-identify each work; in this sample document, the key is
-the first author's surname and a
-word from the title.  This identifying key is included
-with each item in the \texttt{.bib} file for your article.
-
-The details of the construction of the \texttt{.bib} file
-are beyond the scope of this sample document, but more
-information can be found in the \textit{Author's Guide},
-and exhaustive details in the \textit{\LaTeX\ User's
-Guide}\cite{Lamport:LaTeX}.
-
-This article shows only the plainest form
-of the citation command, using \texttt{{\char'134}cite}.
-This is what is stipulated in the SIGS style specifications.
-No other citation format is endorsed or supported.
-
-\section{Conclusions}
-This paragraph will end the body of this sample document.
-Remember that you might still have Acknowledgments or
-Appendices; brief samples of these
-follow.  There is still the Bibliography to deal with; and
-we will make a disclaimer about that here: with the exception
-of the reference to the \LaTeX\ book, the citations in
-this paper are to articles which have nothing to
-do with the present subject and are used as
-examples only.
+Beyond these there still remain much larger conceptual problems facing the field of MIR. Although we have attempted to
+improve the situation by the use of query expansion, the problem of mathematical synonyms introduced by Youssef and Miller still remains a significant challenge. Understanding notational differences such as $\sum_{i=1}^{n}x_i$ compared to
+$x_1 + \cdots + x_n$ would appear to require a higher level understanding of the operations involved. 
 %\end{document}  % This is where a 'short' article might terminate
-
-%ACKNOWLEDGMENTS are optional
-%\section{Acknowledgments}
-%I'd like to thank the based god.
 
 %
 % The following two commands are all you need in the
