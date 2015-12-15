@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.15)  15 DEC 2015 17:51
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.15)  15 DEC 2015 18:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -240,51 +240,79 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 )))
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count109
+\lst@gtempboxa=\box30
+\lst@token=\toks36
+\lst@length=\count110
+\lst@currlwidth=\dimen123
+\lst@column=\count111
+\lst@pos=\count112
+\lst@lostspace=\dimen124
+\lst@width=\dimen125
+\lst@newlines=\count113
+\lst@lineno=\count114
+\abovecaptionskip=\skip44
+\belowcaptionskip=\skip45
+\lst@maxwidth=\dimen126
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
+\c@lstnumber=\count115
+\lst@skipnumbers=\count116
+\lst@framebox=\box31
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2013/08/26 1.5b listings configuration
+))
+Package: listings 2013/08/26 1.5b (Carsten Heinz)
+
 (build/sig-alternate.aux)
 \openout1 = `sig-alternate.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count109
-\scratchdimen=\dimen123
-\scratchbox=\box30
-\nofMPsegments=\count110
-\nofMParguments=\count111
-\everyMPshowfont=\toks36
-\MPscratchCnt=\count112
-\MPscratchDim=\dimen124
-\MPnumerator=\count113
-\makeMPintoPDFobject=\count114
-\everyMPtoPDFconversion=\toks37
+\scratchcounter=\count117
+\scratchdimen=\dimen127
+\scratchbox=\box32
+\nofMPsegments=\count118
+\nofMParguments=\count119
+\everyMPshowfont=\toks37
+\MPscratchCnt=\count120
+\MPscratchDim=\dimen128
+\MPnumerator=\count121
+\makeMPintoPDFobject=\count122
+\everyMPtoPDFconversion=\toks38
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 62.
+\c@lstlisting=\count123
+LaTeX Font Info:    Try loading font information for U+msa on input line 63.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 62.
+LaTeX Font Info:    Try loading font information for U+msb on input line 63.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 62.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 63.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Overfull \hbox (1.15787pt too wide) in paragraph at lines 83--99
+Overfull \hbox (1.15787pt too wide) in paragraph at lines 84--100
 []\T1/aer/m/n/9 Within the field of In-for-ma-tion Re-trieval, the task of math
 -
  []
@@ -292,23 +320,23 @@ Overfull \hbox (1.15787pt too wide) in paragraph at lines 83--99
 <img/subtree.png, id=1, 299.1175pt x 146.5475pt>
 File: img/subtree.png Graphic file (type png)
  <use img/subtree.png>
-Package pdftex.def Info: img/subtree.png used on input line 163.
+Package pdftex.def Info: img/subtree.png used on input line 164.
 (pdftex.def)             Requested size: 224.33757pt x 109.91034pt.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-Overfull \hbox (10.82506pt too wide) in paragraph at lines 187--198
+Overfull \hbox (10.82506pt too wide) in paragraph at lines 188--199
 \T1/aer/m/n/9 these rea-sons we chose to fo-cus on search-ing for L[]T[]Xexress
 ions
  []
 
-LaTeX Font Info:    Try loading font information for T1+aett on input line 208.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 209.
 
 (/usr/share/texlive/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
-Overfull \hbox (7.15085pt too wide) in paragraph at lines 211--212
+Overfull \hbox (7.15085pt too wide) in paragraph at lines 212--213
 []\T1/aer/m/n/9 After this lex-i-cal pre-pro-cess-ing step, the ex-pres-sion is
  passed
  []
@@ -320,40 +348,56 @@ Underfull \vbox (badness 1558) has occurred while \output is active []
 File: img/exprtree.png Graphic file (type png)
 
 <use img/exprtree.png>
-Package pdftex.def Info: img/exprtree.png used on input line 224.
+Package pdftex.def Info: img/exprtree.png used on input line 225.
 (pdftex.def)             Requested size: 126.47026pt x 120.44786pt.
 
-Overfull \hbox (1.51587pt too wide) in paragraph at lines 274--278
+Overfull \hbox (1.51587pt too wide) in paragraph at lines 275--279
 []\T1/aer/m/n/9 1. PUT EX-AM-PLES HERE 2. PUT COM-MENTS HERE
  []
 
-[3 <./img/exprtree.png>] (build/sig-alternate.bbl) [4] (build/sig-alternate.aux
-) ) 
+[3 <./img/exprtree.png>] (build/sig-alternate.bbl)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4]
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 328.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/ae/omsaer.fd
+File: omsaer.fd 1999/12/27
+)
+LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <9> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 328.
+
+Overfull \hbox (31.74379pt too wide) in paragraph at lines 388--389
+[][][][][][][][][][][][][][][][][] 
+ []
+
+[5] (build/sig-alternate.aux) ) 
 Here is how much of TeX's memory you used:
- 2826 strings out of 494985
- 35824 string characters out of 6180356
- 99407 words of memory out of 5000000
- 5963 multiletter control sequences out of 15000+600000
+ 4033 strings out of 494985
+ 53669 string characters out of 6180356
+ 142522 words of memory out of 5000000
+ 7155 multiletter control sequences out of 15000+600000
  51034 words of font info for 70 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 42i,10n,28p,848b,250s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mti9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/urw/times/utmr8a.pfb>
-Output written on build/sig-alternate.pdf (4 pages, 186260 bytes).
+ 42i,10n,32p,848b,1081s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/b
+ase/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/he
+lvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8
+a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on build/sig-alternate.pdf (5 pages, 190482 bytes).
 PDF statistics:
- 75 PDF objects out of 1000 (max. 8388607)
- 51 compressed objects within 1 object stream
+ 78 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
