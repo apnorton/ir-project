@@ -14,6 +14,55 @@ from LatexGramParser import  LatexGramParser
 from LatexGramVisitor import LatexGramVisitor
 
 
+class SymbolVisitor(LatexGramVisitor):
+  def getSubtree(self, ctx):
+    left = self.visit(ctx.expr(0))
+    right = self.visit(ctx.expr(1))
+    return left+right
+
+  def visitAtmNum(self, ctx):
+    return [str(ctx.NUM().getText())]
+
+  def visitAtmVar(self, ctx):
+    return [str(ctx.VAR().getText())]
+
+  def visitAdd(self, ctx):
+    return self.getSubtree(ctx)
+
+  def visitSub(self, ctx):
+    return self.getSubtree(ctx) 
+
+  def visitDiv(self, ctx):
+    return self.getSubtree(ctx)
+
+  def visitPow(self, ctx):
+    left = self.visit(ctx.pack(0))
+    right = self.visit(ctx.pack(1))
+    return left+right
+
+  def visitTrig(self, ctx):
+    return self.visit(ctx.pack())
+
+  def visitBigOp(self, ctx):
+    return self.visit(ctx.expr())
+
+  def visitMul(self, ctx):
+    return self.getSubtree(ctx)
+
+  def visitIMul(self, ctx):
+    left = self.visit(ctx.pack(0))
+    right = self.visit(ctx.pack(1))
+    return left+right
+
+  def visitPack(self, ctx):
+    if (ctx.expr() is not None):
+      return self.visit(ctx.expr())
+    else:
+      return self.visit(ctx.atom())
+
+  def visitAtmExpr(self, ctx):
+    return self.visit(ctx.expr())
+
 class EvalVisitor(LatexGramVisitor):
   def getSubtree(self, ctx, t):
     left = self.visit(ctx.expr(0))
@@ -97,12 +146,31 @@ def getLeafRoots(s):
 
   return result
 
+def getSymbols(s):
+  input_stream = InputStream(s)
+
+  lexer = LatexGramLexer(input_stream)
+  token_stream = CommonTokenStream(lexer)
+  parser = LatexGramParser(token_stream)
+  tree = parser.s()
+  visitor = SymbolVisitor()
+  return visitor.visit(tree)
+
 def addIndex(eqnId, path):
   directory = '../index/' + '/'.join(path)
   if not os.path.exists(directory):
     os.makedirs(directory)
   open(directory + '/' + str(eqnId), 'w')
 
+
+def computeSymbolScore(q, d):
+  q_symbols = set(getSymbols(q))
+  d_symbols = set(getSymbols(d))
+
+  qL = len(q_symbols)
+  overlap = len(q_symbols.intersection(d_symbols))
+
+  return float(overlap) / qL
 
 def search(q, docs):
   print '\n--------'
@@ -115,16 +183,15 @@ def search(q, docs):
     for i in range(1, len(p)+1):
       currResults = set()
       directory = '../index/' + '/'.join(p[:i])
-      #print '====' + directory + '===='
       for rt, b, files in os.walk(directory):
         for r in files:
-          # print rt + '/' + r
           currResults.add(r)
 
       for r in currResults:
         toReturn[int(r)] = toReturn.get(int(r), 0) + i
+        toReturn[int(r)] += computeSymbolScore(q, docs[int(r)])
 
-  for r, p in sorted(toReturn.items(), key=lambda k: k[1], reverse=True)[:5]:
+  for r, p in sorted(toReturn.items(), key=lambda k: k[1], reverse=True):
     print docs[r], " with priority ", p
 
 if __name__ == '__main__':
