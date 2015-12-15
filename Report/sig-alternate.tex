@@ -186,27 +186,27 @@ Our solution to the problem of Mathematics Information Retrieval naturally divid
 
 \subsection{Representation}
 The system was inspired by and particularly targets the Stack Exchange
-and arXiv use cases which both store math information as LaTeX. 
+and arXiv use cases which both store math information as \LaTeX{}. 
 Additionally, the corpus of expressions made available to us contains
-\LaTeX expressions. For these reasons we chose to focus on searching
-for \LaTeX exressions rather than alternatives such as MathML. As a 
-result of this we decided to accept \LaTeX formatted inputs. The advantage
-of this choice is that \LaTeX is a widely used system for expressing
+\LaTeX{} expressions. For these reasons we chose to focus on searching
+for \LaTeX{} expressions rather than alternatives such as MathML. As a 
+result of this we decided to accept \LaTeX{} formatted inputs. The advantage
+of this choice is that \LaTeX{} is a widely used system for expressing
 mathematical structures, in particular, users who want to search
-a \LaTeX corpus are probably also capable of composing queries with it.
+a \LaTeX{} corpus are probably also capable of composing queries with it.
 As well as this, many simple expressions can be given without any 
 overt formatting and will still be valid which increases ease of use.
 
 When given a raw string, whether it be as part of the corpus or in 
 a query the system first performs a number of preprocessing operations utilizing a grammar
-generated with the ANTLR software package.  (See Appendix \textbf{ENTER APPENDIX HERE} for 
+generated with the ANTLR software package.  (See Appendix A for 
 grammar and lexing rules.)
 
 First, whitespace and commands which only purely change the display of an
 expression and not the structure or content are removed. Second, 
 semantically similar operations are grouped roughly into equivalence 
 classes and occurrences are replaced with a single symbol when the lexer runs.
-For example, ``\texttt{*},'' ``\texttt{\textbackslash times},'' and ``\texttt{\textbackslash cdot}'' are all multiplication symbols with different \TeX representations.  These are treated as identical and replaced with a single token ``\texttt{MUL}.'' Other operations that might have clear differences in meaning but are also
+For example, ``\texttt{*},'' ``\texttt{\textbackslash times},'' and ``\texttt{\textbackslash cdot}'' are all multiplication symbols with different \TeX{} representations.  These are treated as identical and replaced with a single token ``\texttt{MUL}.'' Other operations that might have clear differences in meaning but are also
 similar in some way such as ``\texttt{\textbackslash int}'' and ``\texttt{\textbackslash sum}'' are replaced with the common command ``\texttt{BIG\_OP}". Numbers are all normalized to the symbol ``\texttt{NUM}" and single-letter variables (including lower-case Greek letters) to ``\texttt{VAR}".
 
 After this lexical preprocessing step, the expression is passed through a parser designed to recognize simple \LaTeX\, constructs.  At a high level, the idea is that a \LaTeX\, math expression consists of sub-expressions joined by an operator (for instance, ``\texttt{+}'') or prefaced by a function name (for instance, ``\texttt{\textbackslash sin}'').  However, since we must also account for the way a human would write math (like omitting some operators or parenthesis), we also consider the idea of a ``packed'' expression which should be treated as a single term.  For instance, if one were to write ``3\^ab'', we expect them to mean $3^{ab}$, not $3^ab$. 
@@ -242,7 +242,7 @@ significant portion of the entire corpus. Thus a method is needed for ranking wi
 use a few different approaches based on the structure of the trees in order to rank, and we also reintroduce
 the symbolic information removed in the first parsing step in order to compare the literal terms of the query.
 
-To rank the documents, we break the query into all leaf-root paths.  For instance, if we were to search for the expression ``\texttt{(a+b)*(x\^3 + \textbackslash sin(x))},'' we would have the following paths:
+To rank the documents, we break the query into all leaf-root paths.  For instance, if we were to search for the expression ``\texttt{(a+b)*(x\^{}3 + \textbackslash sin(x))},'' we would have the following paths:
 \begin{itemize}
 \item VAR$\rightarrow$+$\rightarrow$*
 \item VAR$\rightarrow$+$\rightarrow$*
@@ -256,26 +256,64 @@ For each of these paths, we iterate over all prefixes.  For each prefix, we add 
 To reintroduce term matching, we use a boolean similarity  model on the variables (and numbers) used in a query.  This similarity is then used to further increase the score of documents that use the same variables as in the query.
 
 
-\section{Experiment}
+\section{Experiments}
 The lack of an annotated corpus and the difficulty involved in creating one put limitations on our ability
 to use standard metrics to evaluate the system's performance. We were also unable to take full advantage of the 
 StackExchange corpus due to our system's inability to parse many of the symbols used. As a result our testing procedure consisted of selecting a "target" expression within a hand constructed corpus and then searching for modified versions of the expression or manually created expressions that we deemed "relevant" and observing if the target expression is returned. Some examples are presented here and general comments are given. 
 
 Examples:
 First we examine the results of a very simple query: $(a+b)$.
+Some results are omitted for the sake of brevity.
 \begin{itemize}
     \item a + b + c  with priority  10.0
     \item (a + b + c) * d  with priority  10.0
     \item (a + b) * (c + d) * e  with priority  10.0
     \item b + a + c  with priority  10.0
 \end{itemize}
+We can see that the first "tier" of results consists of expressions that contain exactly the expression we are searching for
+(or a permutation of it). In the second tier we find the results that have similar structures but use different symbols.
+\begin{itemize}
+    \item $3\alpha + x$  with priority  6.0
+    \item $3\alpha + y$  with priority  6.0
+    \item $(x + 2)(x-2)$  with priority  6.0
+    \item $x + 1$  with priority  6.0
+    \item $x + y + z$  with priority  6.0
+\end{itemize}
 
+A slightly more complex query demonstrates a similar pattern in the results: $\int x^3$
+\begin{itemize}
+    \item  $\sum x^3$  with priority  18.0
+    \item  $\int x^3$  with priority  18.0
+\end{itemize}
+These results demonstrate how the grammar groups similar operations, in this case $\int$ and $\sum$. 
+The next tier contains the same structure of an $x^3$ term within a sum but with the addition of extraneous terms.
+\begin{itemize}
+    \item $\sum (x^3 + y+ z)$  with priority  10.0
+    \item $\sum (2*x^3)$  with priority  10.0
+\end{itemize}
+After this tier we begin retrieving results that simply contain an exponentiated $x$.
+\begin{itemize}
+    \item $x^2 + 4x - 10$  with priority  8.0
+    \item $x^2 - 4$  with priority  8.0
+\end{itemize}
 
+The results reveal some interesting unintentional properties of our ranking algorithm. One of these is that in
+some cases it places more priority on matching variables than structures. For example, the query $x + y + z$ returns $\sum (x^3 + y+ z)$ with a slightly higher priority than $a + b + c$. Depending on context, this could
+be seen as a benefit or a detriment. There are some cases however that seem to result in decidedly negative behaviour. The query $x^4 - 2$ returns both $x^2 - 4$ and $x^2 +  4x - 10$ higher than $x^4 + 3$ which seems likely to be the most desirable result in most cases. The mistake here seems to be caused by a failure to 
+recognize that in most situations the degree of a polynomial is more important than constant factors. The 
+problem could potentially be solved by introducing some weighting factors that puts more value on certain
+parts of an expression. These weights could be determined by hand or could be computed as a function of the
+depth in the parse tree.
 
-1. PUT EXAMPLES HERE
-2. PUT COMMENTS HERE
-3. IF POSSIBLE PLEASE PUT SOME EXAMPLES OF QUERY EXPANSION ACTUALLY DOING SOMETHING USEFUL HERE.
-4. JUSTIFICATION THAT WE DID SOMETHING OTHER THAN POORLY REIMPLEMENT WOULD BE V HELPFUL.
+An unintended consequence of the ranking function is that there is not a straightforward way to compare 
+priority scores across multiple queries. This makes it difficult to integrate the query expansion step
+discussed earlier. Nonetheless we can see the benefit of such a system by evaluating the results separately.
+
+For example,  a search for $\sin(2x)$ returns $x^2 + 4x - 10$ as the top result because the corpus does not contain
+any expressions that are obviously relevant. However, using one of the alternate forms provided by the 
+Wolfram API we get $2\sin(x)\cos(x)$ as the highest priority result. Visually, besides also including
+trigonometric functions, there's not an immediate reason to believe this result is relevant without the
+outside knowledge that allows us to know they are actually equivalent.
 
 \section{Limitations}
 There are a number of limitations associated with our work here. Some of them are inherent to the field,
@@ -289,13 +327,13 @@ of any textual information. It is not possible for example for a user to type an
 in particular they would like to know about the expression, e.g. it's derivative, or integral, etc. The system would benefit greatly by integration with a standard text search system, perhaps using delimiters to indicate which portions
 of a query contain mathematics and which text.
 
-Although the author of the Cowpie project provided the grammar used to parse \LaTeX, we used an alternate system
+Although the author of the Cowpie project provided the grammar used to parse \LaTeX{}, we used an alternate system
 which didn't allow direct translation. As a result we were unable to capture the full complexity of the markup and 
 our searches were limited to a less innteresting subset of the total search space. This led to less interesting results
 but we expect that the techniques employed would generalize to more complex expressions without too much difficulty.
 
 \section{Conclusions and Further Work}
-Beyond the immediate goal of extending the grammar to allow full \LaTeX support there are a few ways that we could 
+Beyond the immediate goal of extending the grammar to allow full \LaTeX{} support there are a few ways that we could 
 add to the system. A way to improve the results returned would be to use a more complex ranking function that takes into
 account more properties of the structure of the expression. For example, currently we group all variables into one
 class regardless of name. This disregards the fact that users will often use the same variable in multiple places, 
@@ -305,7 +343,7 @@ the variable $x$ is the same in both occurences.
 A feature that would increase usability would be the ability to mark certain symbols as "free" or "fixed". That is, to
 indicate to the system that the particular variable name used has some special meaning and should not be allowed
 to vary. For example, if the user wants to search for a formula involving standard deviation, they may use the
-variable $\sigma$ because they knokw that is the standard notation. Returning results that appear to be similar but don't
+variable $\sigma$ because they know that it is the standard notation. Returning results that appear to be similar but don't
 contain $\sigma$ may decrease relevancy in this case.
 
 Beyond these there still remain much larger conceptual problems facing the field of MIR. Although we have attempted to
@@ -321,7 +359,7 @@ $x_1 + \cdots + x_n$ would appear to require a higher level understanding of the
 \bibliography{irbib}  % sigproc.bib is the name of the Bibliography in this case
 % That's all folks!
 
-\pagebreak
+%\pagebreak
 \appendix
 \section{Lexer Rules}
 \begin{lstlisting}
