@@ -30,6 +30,11 @@ class LatexGramVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by LatexGramParser#bigOp.
+    def visitBigOp(self, ctx):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by LatexGramParser#atomic.
     def visitAtomic(self, ctx):
         return self.visitChildren(ctx)
@@ -37,6 +42,11 @@ class LatexGramVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by LatexGramParser#pow.
     def visitPow(self, ctx):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LatexGramParser#trig.
+    def visitTrig(self, ctx):
         return self.visitChildren(ctx)
 
 

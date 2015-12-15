@@ -6,18 +6,19 @@ expr
   : atom          # atomic
   | pack          # packed
   | pack '^' pack # pow
+  | BIG_OP expr   # bigOp
   | pack pack     # iMul
   | expr DIV expr # div
   | expr MUL expr # mul
   | expr SUB expr # sub
   | expr ADD expr # add
+  | TRIG_OP pack  # trig
   ;
 
-
 pack
-  : atom
-  | '(' expr ')'
-  | '[' expr ']'
+  : atom          
+  | '(' expr ')'  
+  | '[' expr ']'  
   ;
 
 atom
@@ -66,4 +67,13 @@ VAR
 BIG_OP
   : '\\int'
   | '\\sum'
+  ;
+
+TRIG_OP
+  : '\\sin'
+  | '\\cos'
+  | '\\tan'
+  | '\\sec'
+  | '\\csc'
+  | '\\cot'
   ;

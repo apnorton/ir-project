@@ -4,6 +4,7 @@ certain tree stage and eventually return result from the entry call.
 """
 import os
 import sys
+import shutil
 from antlr4 import *
 from antlr4.InputStream import InputStream
 
@@ -42,6 +43,18 @@ class EvalVisitor(LatexGramVisitor):
       l.append('^')
 
     return left+right
+
+  def visitTrig(self, ctx):
+    lst = self.visit(ctx.pack())
+    for l in lst:
+      l.append('TRIG')
+    return lst
+
+  def visitBigOp(self, ctx):
+    lst = self.visit(ctx.expr())
+    for l in lst:
+      l.append('BIG_OP')
+    return lst
 
   def visitMul(self, ctx):
     return self.getSubtree(ctx, '*')
@@ -90,7 +103,32 @@ def addIndex(eqnId, path):
     os.makedirs(directory)
   open(directory + '/' + str(eqnId), 'w')
 
+
+def search(q, docs):
+  print '\n--------'
+  paths = getLeafRoots(q)
+
+  print 'Search String: ', q
+
+  toReturn = {}
+  for p in paths:
+    for i in range(1, len(p)+1):
+      currResults = set()
+      directory = '../index/' + '/'.join(p[:i])
+      #print '====' + directory + '===='
+      for rt, b, files in os.walk(directory):
+        for r in files:
+          # print rt + '/' + r
+          currResults.add(r)
+
+      for r in currResults:
+        toReturn[int(r)] = toReturn.get(int(r), 0) + i
+
+  for r, p in sorted(toReturn.items(), key=lambda k: k[1], reverse=True)[:5]:
+    print docs[r], " with priority ", p
+
 if __name__ == '__main__':
+  shutil.rmtree('../index/', ignore_errors=True)
   docs = {}
   with open('../data/eqns.txt') as f:
     lines = f.read().splitlines()
@@ -104,44 +142,10 @@ if __name__ == '__main__':
       docs[i] = l
       i+=1
   
-
-  print 
-  print '--------'
-  mystr = "3+a+b"
-  paths = getLeafRoots(mystr)
-
-  print 'Search String: ', mystr
-
-  toReturn = {}
-  for p in paths:
-    directory = '../index/' + '/'.join(p)
-    for a, b, files in os.walk(directory):
-      for r in files:
-        toReturn[int(r)] = toReturn.get(int(r), 0) + 1
-#    if os.path.exists(directory):
-#      results = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory,f))]
-#
-
-  for r in toReturn:
-    print docs[r], " with priority ", toReturn[r]
-      
-  print 
-  print '--------'
-  mystr = "a+b"
-  paths = getLeafRoots(mystr)
-
-  print 'Search String: ', mystr
-
-  toReturn = {}
-  for p in paths:
-    directory = '../index/' + '/'.join(p)
-    for a, b, files in os.walk(directory):
-      for r in files:
-        toReturn[int(r)] = toReturn.get(int(r), 0) + 1
-#    if os.path.exists(directory):
-#      results = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory,f))]
-#
-
-  for r in toReturn:
-    print docs[r], " with priority ", toReturn[r]
-      
+  search('\int x^3', docs)
+  search('3+x+y', docs)
+  search('z+x+y', docs)
+  search('a+b', docs)
+  search('(a+b)', docs)
+  search('\sin(a)', docs)
+  search('a', docs)

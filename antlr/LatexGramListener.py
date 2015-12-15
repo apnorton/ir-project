@@ -49,6 +49,15 @@ class LatexGramListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by LatexGramParser#bigOp.
+    def enterBigOp(self, ctx):
+        pass
+
+    # Exit a parse tree produced by LatexGramParser#bigOp.
+    def exitBigOp(self, ctx):
+        pass
+
+
     # Enter a parse tree produced by LatexGramParser#atomic.
     def enterAtomic(self, ctx):
         pass
@@ -64,6 +73,15 @@ class LatexGramListener(ParseTreeListener):
 
     # Exit a parse tree produced by LatexGramParser#pow.
     def exitPow(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by LatexGramParser#trig.
+    def enterTrig(self, ctx):
+        pass
+
+    # Exit a parse tree produced by LatexGramParser#trig.
+    def exitTrig(self, ctx):
         pass
 
 
