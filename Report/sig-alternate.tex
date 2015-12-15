@@ -315,6 +315,14 @@ Wolfram API we get $2\sin(x)\cos(x)$ as the highest priority result. Visually, b
 trigonometric functions, there's not an immediate reason to believe this result is relevant without the
 outside knowledge that allows us to know they are actually equivalent.
 
+The examples so far have been fairly simple for the sake of clarity. The grammar limits the possible 
+expressions mostly to exponential, rational, and trigonometric functions but within this bound the expressions can be arbitrarily complex. For example: $1/2 + (3 * \sin(y) -x^2)/4$
+\begin{itemize}
+    \item $(x^2 - 4)/(x^2 - 5*x + 6)$ with priority  76.5
+    \item $\sin(d)/(4*x) - x^2$  with priority  52.0
+    \item $x^2 + 4x - 10$  with priority  39.0
+\end{itemize}
+
 \section{Limitations}
 There are a number of limitations associated with our work here. Some of them are inherent to the field,
 some are a result of our choice of approach, and some are a result of our particular implementation. Due to the newness
