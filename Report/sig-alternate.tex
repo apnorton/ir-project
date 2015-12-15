@@ -230,12 +230,12 @@ It's important to note that the paths do not provide a complete description of t
 The IDs themselves are used as keys to lookup information about the particular expression in an external structure. This might include the original typesetting, the actual parse-tree, the source webpage, or other relevant information depending on the context that the search is operating in.
 
 \subsection{Queries and Retrieval}
-As explained in the representation section, queries are accepted in \LaTeX format. They 
+As explained in the representation section, queries are accepted in \LaTeX\, format. They 
 are subjected to the same process of normalization and parsing as the corpus expressions
 are and decomposed into leaf-root paths. In order to retrieve relevant expressions from the corpus
 we just traverse the index according to each of paths. Continuing the example from above, assume that
 the index contains only the expression from figure 2 and that a user has queried for "5 + 2" which 
-breaks down to the single path "NUM$\rightarrow$ PLUS". We first traverse the filesystem to the location
+breaks down to two identical paths ``NUM$\rightarrow$ PLUS". We first traverse the filesystem to the location
 ./NUM/PLUS and then return the merged contents of all of the subdirectories. This process gives us every expression for which the query is a sub-part. 
 
 Depending on the query, and particularly for short queries, the returned set of expressions is a potentially
@@ -243,7 +243,19 @@ significant portion of the entire corpus. Thus a method is needed for ranking wi
 use a few different approaches based on the structure of the trees in order to rank, and we also reintroduce
 the symbolic information removed in the first parsing step in order to compare the literal terms of the query.
 
-DESCRIBE RANKING PROCESS IM NOT TOTALLY SURE HOW IT ACTUALLY WORKS.
+To rank the documents, we break the query into all leaf-root paths.  For instance, if we were to search for the expression ``\texttt{(a+b)*(x\^3 + \textbackslash sin(x))},'' we would have the following paths:
+\begin{itemize}
+\item VAR$\rightarrow$+$\rightarrow$*
+\item VAR$\rightarrow$+$\rightarrow$*
+\item VAR$\rightarrow$\textasciicircum$\rightarrow$+$\rightarrow$*
+\item NUM$\rightarrow$\textasciicircum$\rightarrow$+$\rightarrow$*
+\item VAR$\rightarrow$TRIG$\rightarrow$+$\rightarrow$*
+\end{itemize}
+
+For each of these paths, we iterate over all prefixes.  For each prefix, we add increment the document score of every document within the directory (including subdirectories) corresponding to the prefix.  For example, in the first path, we would increment every document within the \texttt{./VAR} directory, then within \texttt{./VAR/ADD/}, , then \texttt{./VAR/ADD/MUL}.  This gives more weight to document paths that are similar to the query at greater depth within the tree.
+
+To reintroduce term matching, we use a boolean similarity  model on the variables (and numbers) used in a query.  This similarity is then used to further increase the score of documents that use the same variables as in the query.
+
 
 \section{Experiment}
 The lack of an annotated corpus and the difficulty involved in creating one put limitations on our ability
