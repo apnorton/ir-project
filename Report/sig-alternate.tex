@@ -16,7 +16,7 @@
 \begin{document}
 %
 % --- Author Metadata here ---
-\conferenceinfo{CHARLOTTESVILLE}{'15 Charlottesville, Virginia USA}
+%\conferenceinfo{CHARLOTTESVILLE}{'15 Charlottesville, Virginia USA}
 %\CopyrightYear{2007} % Allows default copyright year (20XX) to be over-ridden - IF NEED BE.
 %\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
 % --- End of Author Metadata ---
@@ -40,13 +40,13 @@
 %
 % 1st. author
 \alignauthor
-Andrew Norton\titlenote{}\\
+Andrew Norton
        \affaddr{University of Virginia}\\
        \affaddr{Charlottesville, Virginia}\\
        \email{apn4za@virginia.edu}
 % 2nd. author
 \alignauthor
-Ben Haines\titlenote{}\\
+Ben Haines
        \affaddr{University of Virginia}\\
        \affaddr{Charlottesville, Virginia}\\
        \email{bmh5wx@virginia.edu}
@@ -244,8 +244,19 @@ DESCRIBE RANKING PROCESS IM NOT TOTALLY SURE HOW IT ACTUALLY WORKS.
 
 \section{Experiment}
 The lack of an annotated corpus and the difficulty involved in creating one put limitations on our ability
-to use standard metrics to evaluate the system's performance. As a results our testing procedure consisted of
-selecting a "target" expression and then searching for modified versions of the expression or manually created expressions that we deemed "relevant" and observing if the target expression is returned. Some examples are presented here and general comments are given. 
+to use standard metrics to evaluate the system's performance. We were also unable to take full advantage of the 
+StackExchange corpus due to our system's inability to parse many of the symbols used. As a result our testing procedure consisted of selecting a "target" expression within a hand constructed corpus and then searching for modified versions of the expression or manually created expressions that we deemed "relevant" and observing if the target expression is returned. Some examples are presented here and general comments are given. 
+
+Examples:
+First we examine the results of a very simple query: $(a+b)$.
+\begin{itemize}
+    \item a + b + c  with priority  10.0
+    \item (a + b + c) * d  with priority  10.0
+    \item (a + b) * (c + d) * e  with priority  10.0
+    \item b + a + c  with priority  10.0
+\end{itemize}
+
+
 
 1. PUT EXAMPLES HERE
 2. PUT COMMENTS HERE
