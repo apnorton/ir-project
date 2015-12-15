@@ -259,9 +259,18 @@ of the field there is a scarcity of mature tools for solving this kind of proble
 established or annotated datasets available. Due in particular to the problem of identifying mathematical
 synonyms, it is difficult to create relevance judgements for arbitrary queries. 
 
+A particular weakness of our system is that it focuses onmathematical expressions to the complete exclusion
+of any textual information. It is not possible for example for a user to type an expression and to indicate what
+in particular they would like to know about the expression, e.g. it's derivative, or integral, etc. The system would benefit greatly by integration with a standard text search system, perhaps using delimiters to indicate which portions
+of a query contain mathematics and which text.
+
+Although the author of the Cowpie project provided the grammar used to parse the \LaTeX, we used an alternate system
+which didn't allow direct translation. As a result we were unable to capture the full complexity of the markup and 
+our searches were limited to a less innteresting subset of the total search space. This led to less interesting results
+but we 
+
 1. BETTER RANKING FORMULA - preserve symbols, e.g. x + y = x + 3 <- x
 2. Better index - don't use native fs
-4. Only does symbols not symbols and words.
 
 3. Our grammar/parsing is weak and limits functionality to a not very interesting subset of the data.
 
