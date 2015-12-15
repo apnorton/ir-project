@@ -1,8 +1,10 @@
 \begin{thebibliography}{1}
 
 \bibitem{yuan:layout}
-To be found...
-\newblock {\em Can't find it}, ---.
+R.~Z. Chair, B.~Y. Reader, M.~T. Schellenberg, M.~T. Schellenberg, and
+  R.~Zanibbi.
+\newblock Layout-based substitution tree indexing and retrieval for
+  mathematical expressions, 2011.
 
 \bibitem{kolhase:mathwebsearch}
 M.~Kohlhase and I.~Sucan.
@@ -36,7 +38,6 @@ P.~Pavan~Kumar, A.~Agarwal, and C.~Bhagvati.
 \bibitem{zhong:cowpie}
 W.~Zhong.
 \newblock A novel similarity-search method for mathematical content in latex
-  markup and its implementation.
-\newblock {\em Annals of Mathematics and Artificial Intelligence}, 2015.
+  markup and its implementation, 2015.
 
 \end{thebibliography}
