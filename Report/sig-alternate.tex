@@ -82,7 +82,7 @@ these proposals.
 \section{Introduction}
 \subsection{Background}
 Within the field of Information Retrieval, the task of mathematical
-expression retreival is a topic that has been attracting an increasing
+expression retrieval is a topic that has been attracting an increasing
 amount of attention in recent years. Math search is useful in a variety
 of situations, particularly for students and practitioners of technical
 fields. Particular scenarios include researchers who want to discover
@@ -93,7 +93,7 @@ These sites are two of the largest resources of collected mathematical
 information for both professional researchers and student. However, the
 usefulness of much of this information is decreased by challenges in
 locating it. The search feature of the arXiv does not permit searching for
-commonplace symbols such as "+" or "-". Searches on stackexchange often
+commonplace symbols such as "+" or "-". Searches on Stack Exchange often
 return no relevant results despite additional efforts revealing that multiple
 relevant results do exist. A better math retrieval system could in both cases
 increase productivity of many users.
@@ -107,7 +107,7 @@ established text based search methods with modifications in order
 to apply them to the particular problem of Mathematical Information
 Retrieval (MIR) and those that use tailored approaches that attempt
 to take advantage of the inherent structure of expressions to improve
-performance. We provide a brief comprison of techniques in these 
+performance. We provide a brief comparison of techniques in these 
 categories and justify our particular choice of a system to implement. 
 Our research focuses on the effectiveness of the Leaf-Root path system
 for representing structured expressions. The primary contribution of the
@@ -151,7 +151,7 @@ methods is introduced in the paper "A structure based
 approach for mathematical expression retrieval".\cite{kumar:structure} The fundamental
 idea is to use a modified longest common substring (LCS) algorithm to 
 measure similarity between expressions. The expressions are tokenized
-and each token is given an label to indicate its nested depth. The LCS
+and each token is given a label to indicate its nested depth. The LCS
 algorithm then weights the similarities between two expressions by how
 closely depth markers are aligned. 
 An alternate structure capturing approach that has been explored in
@@ -178,7 +178,7 @@ the particular implementation by Zhong provided inspiration and
 solutions to some technical challenges.\cite{zhong:cowpie}
 
 Despite these recent innovations it is interesting to note that the top performers on 
-MIR tasks, such as the main task of NTCIR11 are still acheived by traditional text based
+MIR tasks, such as the main task of NTCIR11 are still achieved by traditional text based
 systems with modifications.
 
 \section{Proposed Solution}
@@ -212,12 +212,12 @@ similar in some way such as ``\texttt{\textbackslash int}'' and ``\texttt{\textb
 After this lexical preprocessing step, the expression is passed through a parser designed to recognize simple \LaTeX\, constructs.  At a high level, the idea is that a \LaTeX\, math expression consists of sub-expressions joined by an operator (for instance, ``\texttt{+}'') or prefaced by a function name (for instance, ``\texttt{\textbackslash sin}'').  However, since we must also account for the way a human would write math (like omitting some operators or parenthesis), we also consider the idea of a ``packed'' expression which should be treated as a single term.  For instance, if one were to write ``3\^ab'', we expect them to mean $3^{ab}$, not $3^ab$. 
 
 \subsection{Index Construction}
-After the expressions have been processed we are left with a collection of tree structures that need to be organized into some way to allow effective structure based search. This is the key component of the leaf-root tree approach. Each expression is given a unique ID number and its tree is decomposed into a collection of leaf root paths. For example consider the parse tree displayed in figure 2\ref{fig2} corresponding to the expression "2 * (3 + 4)". After normalization the tree is decomposed into the two distinct paths "2$\rightarrow$ TIMES" and "NUM$\rightarrow$ ADD$\rightarrow$ MUL". These paths provide a loose approximation of the structure of the tree as a whole. 
+After the expressions have been processed we are left with a collection of tree structures that need to be organized into some way to allow effective structure based search. This is the key component of the leaf-root tree approach. Each expression is given a unique ID number and its tree is decomposed into a collection of leaf root paths. For example, consider the parse tree displayed in figure 2\ref{fig2} corresponding to the expression "2 * (3 + 4)". After normalization the tree is decomposed into the two distinct paths "2$\rightarrow$ TIMES" and "NUM$\rightarrow$ ADD$\rightarrow$ MUL". These paths provide a loose approximation of the structure of the tree as a whole. 
 There are a few immediate advantages of using parse trees and in particular leaf-node paths. The first is that they assume commutativity of operations. If the expression in figure two was instead "2 * (4 + 3)" its representation as a collection of leaf-root paths would be unchanged. Although there are obvious exceptions this is a good general assumption as it is true for most common operators.
 The second and more important property is that it inherently supports searching for subexpressions as they
 form subtrees. Given two expressions $E_1, E_2$, if $E_1$ is a subexpression of $E_2$ then all of its
-paths will also be subpaths of $E2$'s paths. Any tree that contains a subexpression of the form NUM * (NUM + NUM) is guaranteed to have these paths as subpaths. 
-It's important to note that the paths do not provide a complete description of the tree, some information is lost in their creation. That is, it is possible to have trees that represent distinct expressions but which decompose into the same paths. Thus the paths are used as a first filter to reduce search space rather than a final retrieval mechanism. In order to take advantage of the paths, we structure the index as a filesystem. In our implementation we used the computer's actual filesystem for convenience but this could be implemented in a ore efficient way for this dedicated task. Sub-directories are created for each node on the path, beginning at the leaves and the ID of the expression is stored at the deepest locations. For example, the sample expression would have its ID stored in ./NUM/MUL and ./NUM/ADD/MUL. 
+paths will also be sub-paths of $E2$'s paths. Any tree that contains a subexpression of the form NUM * (NUM + NUM) is guaranteed to have these paths as sub-paths. 
+It's important to note that the paths do not provide a complete description of the tree, some information is lost in their creation. That is, it is possible to have trees that represent distinct expressions but which decompose into the same paths. Thus the paths are used as a first filter to reduce search space rather than a final retrieval mechanism. In order to take advantage of the paths, we structure the index as a filesystem. In our implementation we used the computer's actual filesystem for convenience but this could be implemented in a more efficient way for this dedicated task. Sub-directories are created for each node on the path, beginning at the leaves and the ID of the expression is stored at the deepest locations. For example, the sample expression would have its ID stored in ./NUM/MUL and ./NUM/ADD/MUL. 
 
 \begin{figure}
     \label{fig2}
@@ -259,7 +259,7 @@ To reintroduce term matching, we use a boolean similarity  model on the variable
 \section{Experiments}
 The lack of an annotated corpus and the difficulty involved in creating one put limitations on our ability
 to use standard metrics to evaluate the system's performance. We were also unable to take full advantage of the 
-StackExchange corpus due to our system's inability to parse many of the symbols used. As a result our testing procedure consisted of selecting a "target" expression within a hand constructed corpus and then searching for modified versions of the expression or manually created expressions that we deemed "relevant" and observing if the target expression is returned. Some examples are presented here and general comments are given. 
+Stack Exchange corpus due to our system's inability to parse many of the symbols used. As a result, our testing procedure consisted of selecting a "target" expression within a hand constructed corpus and then searching for modified versions of the expression or manually created expressions that we deemed "relevant" and observing if the target expression is returned. Some examples are presented here and general comments are given. 
 
 Examples:
 First we examine the results of a very simple query: $(a+b)$.
@@ -299,9 +299,9 @@ After this tier we begin retrieving results that simply contain an exponentiated
 
 The results reveal some interesting unintentional properties of our ranking algorithm. One of these is that in
 some cases it places more priority on matching variables than structures. For example, the query $x + y + z$ returns $\sum (x^3 + y+ z)$ with a slightly higher priority than $a + b + c$. Depending on context, this could
-be seen as a benefit or a detriment. There are some cases however that seem to result in decidedly negative behaviour. The query $x^4 - 2$ returns both $x^2 - 4$ and $x^2 +  4x - 10$ higher than $x^4 + 3$ which seems likely to be the most desirable result in most cases. The mistake here seems to be caused by a failure to 
-recognize that in most situations the degree of a polynomial is more important than constant factors. The 
-problem could potentially be solved by introducing some weighting factors that puts more value on certain
+be seen as a benefit or a detriment. There are some cases however that seem to result in decidedly negative behavior. The query $x^4 - 2$ returns both $x^2 - 4$ and $x^2 + 4x - 10$ higher than $x^4 + 3$ which seems likely to be the most desirable result in most cases. The mistake here is caused by a failure to 
+recognize that in most situations the degree of a polynomial is more important than constant terms. The 
+problem could potentially be solved by introducing some weighting factors that put more value on certain
 parts of an expression. These weights could be determined by hand or could be computed as a function of the
 depth in the parse tree.
 
@@ -337,7 +337,7 @@ of a query contain mathematics and which text.
 
 Although the author of the Cowpie project provided the grammar used to parse \LaTeX{}, we used an alternate system
 which didn't allow direct translation. As a result we were unable to capture the full complexity of the markup and 
-our searches were limited to a less innteresting subset of the total search space. This led to less interesting results
+our searches were limited to a less interesting subset of the total search space. This led to less interesting results
 but we expect that the techniques employed would generalize to more complex expressions without too much difficulty.
 
 \section{Conclusions and Further Work}
@@ -346,7 +346,7 @@ add to the system. A way to improve the results returned would be to use a more 
 account more properties of the structure of the expression. For example, currently we group all variables into one
 class regardless of name. This disregards the fact that users will often use the same variable in multiple places, 
 expecting it to have the same meaning. For example, in the expression $\int_{0}^{1}x^{2} dx$ it is important that
-the variable $x$ is the same in both occurences. 
+the variable $x$ is the same in both occurrences. 
 
 A feature that would increase usability would be the ability to mark certain symbols as "free" or "fixed". That is, to
 indicate to the system that the particular variable name used has some special meaning and should not be allowed
@@ -459,3 +459,4 @@ atom
 \end{lstlisting}
 
 \end{document}
+
