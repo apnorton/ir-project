@@ -13,21 +13,21 @@ class LatexGramListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by LatexGramParser#add.
-    def enterAdd(self, ctx):
-        pass
-
-    # Exit a parse tree produced by LatexGramParser#add.
-    def exitAdd(self, ctx):
-        pass
-
-
     # Enter a parse tree produced by LatexGramParser#div.
     def enterDiv(self, ctx):
         pass
 
     # Exit a parse tree produced by LatexGramParser#div.
     def exitDiv(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by LatexGramParser#add.
+    def enterAdd(self, ctx):
+        pass
+
+    # Exit a parse tree produced by LatexGramParser#add.
+    def exitAdd(self, ctx):
         pass
 
 
@@ -40,11 +40,11 @@ class LatexGramListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by LatexGramParser#Mul.
+    # Enter a parse tree produced by LatexGramParser#mul.
     def enterMul(self, ctx):
         pass
 
-    # Exit a parse tree produced by LatexGramParser#Mul.
+    # Exit a parse tree produced by LatexGramParser#mul.
     def exitMul(self, ctx):
         pass
 
@@ -94,12 +94,30 @@ class LatexGramListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by LatexGramParser#atom.
-    def enterAtom(self, ctx):
+    # Enter a parse tree produced by LatexGramParser#atmNum.
+    def enterAtmNum(self, ctx):
         pass
 
-    # Exit a parse tree produced by LatexGramParser#atom.
-    def exitAtom(self, ctx):
+    # Exit a parse tree produced by LatexGramParser#atmNum.
+    def exitAtmNum(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by LatexGramParser#atmVar.
+    def enterAtmVar(self, ctx):
+        pass
+
+    # Exit a parse tree produced by LatexGramParser#atmVar.
+    def exitAtmVar(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by LatexGramParser#atmExpr.
+    def enterAtmExpr(self, ctx):
+        pass
+
+    # Exit a parse tree produced by LatexGramParser#atmExpr.
+    def exitAtmExpr(self, ctx):
         pass
 
 

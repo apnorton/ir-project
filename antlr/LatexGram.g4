@@ -5,24 +5,26 @@ s : expr;
 expr 
   : atom          # atomic
   | pack          # packed
-  | expr MUL expr # Mul
+  | pack '^' pack # pow
   | pack pack     # iMul
-  | atom atom     # iMul1
-  | expr '^' atom # pow
-  | expr ADD expr # add
-  | expr SUB expr # sub
   | expr DIV expr # div
+  | expr MUL expr # mul
+  | expr SUB expr # sub
+  | expr ADD expr # add
   ;
 
 
 pack
-  : '(' expr ')'
+  : atom
+  | '(' expr ')'
   | '[' expr ']'
   ;
 
 atom
-  : NUM | ZERO | ONE | VAR
-  | '{' expr '}' ;
+  : NUM             # atmNum
+  | VAR             # atmVar
+  | '{' expr '}'    # atmExpr
+  ; 
 
 MUL : '*' | '\\times' | '\\cdot' ;
 ADD : '+' ;
@@ -31,14 +33,14 @@ DIV : '/' ;
 
 
 NUM : [0-9]+ ;
-ZERO: '0';
-ONE : '1';
+WS : [ \t\r\n]+ -> skip ;
 
-
+/* Variable characters */
 VAR 
   : [a-zA-Z]
   | '\\alpha'
   | '\\beta'
+  | '\\gamma'
   | '\\delta'
   | '\\epsilon'
   | '\\zeta'
@@ -61,5 +63,7 @@ VAR
   | '\\omega'
   ;
 
-
-WS : [ \t\r\n]+ -> skip ;
+BIG_OP
+  : '\\int'
+  | '\\sum'
+  ;
