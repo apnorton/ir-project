@@ -1,0 +1,14 @@
+x^2 + 4x - 10
+(4 * x)/(7y)
+a + b + c
+(a + b + c) * d
+(a + b) * (c + d) * e
+3\alpha + x
+3\alpha + y
+4\gamma + 70
+(x + 2)(x-2)
+x^2 - 4
+x + 1
+y - 5
+b + a + c
+x + y + z
