@@ -181,9 +181,7 @@ MIR tasks, such as the main task of NTCIR11 are still acheived by traditional te
 systems with modifications.
 
 \section{Proposed Solution}
-There are a number of general components to our proposed solution.
-Each will be discussed separately and the particular 
-decisions we made will be justified. 
+Our solution to the problem of Mathematics Information Retrieval naturally divides itself into three categories: document and query representation, indexing method, and the query execution step.  We discuss these three components in the sections below.
 
 \subsection{Representation}
 The system was inspired by and particularly targets the Stack Exchange
@@ -213,12 +211,12 @@ similar in some way such as ``\texttt{\textbackslash int}'' and ``\texttt{\textb
 After this lexical preprocessing step, the expression is passed through a parser designed to recognize simple \LaTeX\, constructs.  At a high level, the idea is that a \LaTeX\, math expression consists of sub-expressions joined by an operator (for instance, ``\texttt{+}'') or prefaced by a function name (for instance, ``\texttt{\textbackslash sin}'').  However, since we must also account for the way a human would write math (like omitting some operators or parenthesis), we also consider the idea of a ``packed'' expression which should be treated as a single term.  For instance, if one were to write ``3\^ab'', we expect them to mean $3^{ab}$, not $3^ab$. 
 
 \subsection{Index Construction}
-After the expressions have been processed we are left with a collection of tree structures that need to be organized into some way to allow effective structure based search. This is the key component of the leaf-root tree approach. Each expression is given a unique ID number and its tree is decomposed into a collection of leaf root paths. For example consider the parse tree displayed in figure 2\ref{fig2} corresponding to the expression "2 * (3 + 4)". After normalization the tree is decomposed into the two distinct paths "2$\rightarrow$ TIMES" and "NUM$\rightarrow$ PLUS$\rightarrow$ TIMES". These paths provide a loose approximation of the structure of the tree as a whole. 
+After the expressions have been processed we are left with a collection of tree structures that need to be organized into some way to allow effective structure based search. This is the key component of the leaf-root tree approach. Each expression is given a unique ID number and its tree is decomposed into a collection of leaf root paths. For example consider the parse tree displayed in figure 2\ref{fig2} corresponding to the expression "2 * (3 + 4)". After normalization the tree is decomposed into the two distinct paths "2$\rightarrow$ TIMES" and "NUM$\rightarrow$ ADD$\rightarrow$ MUL". These paths provide a loose approximation of the structure of the tree as a whole. 
 There are a few immediate advantages of using parse trees and in particular leaf-node paths. The first is that they assume commutativity of operations. If the expression in figure two was instead "2 * (4 + 3)" its representation as a collection of leaf-root paths would be unchanged. Although there are obvious exceptions this is a good general assumption as it is true for most common operators.
 The second and more important property is that it inherently supports searching for subexpressions as they
 form subtrees. Given two expressions $E_1, E_2$, if $E_1$ is a subexpression of $E_2$ then all of its
 paths will also be subpaths of $E2$'s paths. Any tree that contains a subexpression of the form NUM * (NUM + NUM) is guaranteed to have these paths as subpaths. 
-It's important to note that the paths do not provide a complete description of the tree, some information is lost in their creation. That is, it is possible to have trees that represent distinct expressions but which decompose into the same paths. Thus the paths are used as a first filter to reduce search space rather than a final retrieval mechanism. In order to take advantage of the paths, we structure the index as a filesystem. In our implementation we used the computer's actual filesystem for convenience but this could be implemented in a ore efficient way for this dedicated task. Sub-directories are created for each node on the path, beginning at the leaves and the ID of the expression is stored at the deepest locations. For example, the sample expression would have its ID stored in ./NUM/TIMES and ./NUM/PLUS/TIMES. 
+It's important to note that the paths do not provide a complete description of the tree, some information is lost in their creation. That is, it is possible to have trees that represent distinct expressions but which decompose into the same paths. Thus the paths are used as a first filter to reduce search space rather than a final retrieval mechanism. In order to take advantage of the paths, we structure the index as a filesystem. In our implementation we used the computer's actual filesystem for convenience but this could be implemented in a ore efficient way for this dedicated task. Sub-directories are created for each node on the path, beginning at the leaves and the ID of the expression is stored at the deepest locations. For example, the sample expression would have its ID stored in ./NUM/MUL and ./NUM/ADD/MUL. 
 
 \begin{figure}
     \label{fig2}
@@ -235,8 +233,8 @@ are subjected to the same process of normalization and parsing as the corpus exp
 are and decomposed into leaf-root paths. In order to retrieve relevant expressions from the corpus
 we just traverse the index according to each of paths. Continuing the example from above, assume that
 the index contains only the expression from figure 2 and that a user has queried for "5 + 2" which 
-breaks down to two identical paths ``NUM$\rightarrow$ PLUS". We first traverse the filesystem to the location
-./NUM/PLUS and then return the merged contents of all of the subdirectories. This process gives us every expression for which the query is a sub-part. 
+breaks down to two identical paths ``NUM$\rightarrow$ ADD". We first traverse the filesystem to the location
+./NUM/ADD and then return the merged contents of all of the subdirectories. This process gives us every expression for which the query is a sub-part. 
 
 Depending on the query, and particularly for short queries, the returned set of expressions is a potentially
 significant portion of the entire corpus. Thus a method is needed for ranking within this filtered set. We 
@@ -252,7 +250,7 @@ To rank the documents, we break the query into all leaf-root paths.  For instanc
 \item VAR$\rightarrow$TRIG$\rightarrow$+$\rightarrow$*
 \end{itemize}
 
-For each of these paths, we iterate over all prefixes.  For each prefix, we add increment the document score of every document within the directory (including subdirectories) corresponding to the prefix.  For example, in the first path, we would increment every document within the \texttt{./VAR} directory, then within \texttt{./VAR/ADD/}, , then \texttt{./VAR/ADD/MUL}.  This gives more weight to document paths that are similar to the query at greater depth within the tree.
+For each of these paths, we iterate over all prefixes.  For each prefix, we add increment the document score of every document within the directory (including subdirectories) corresponding to the prefix.  For example, in the first path, we would increment every document within the \texttt{./VAR} directory, then within \texttt{./VAR/ADD/}, then \texttt{./VAR/ADD/MUL}.  This gives more weight to document paths that are similar to the query at greater depth within the tree.
 
 To reintroduce term matching, we use a boolean similarity  model on the variables (and numbers) used in a query.  This similarity is then used to further increase the score of documents that use the same variables as in the query.
 

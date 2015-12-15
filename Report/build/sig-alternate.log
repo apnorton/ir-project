@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.15)  15 DEC 2015 17:43
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.15)  15 DEC 2015 17:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -298,17 +298,17 @@ Package pdftex.def Info: img/subtree.png used on input line 163.
 
 
 ]
-Overfull \hbox (10.82506pt too wide) in paragraph at lines 189--200
+Overfull \hbox (10.82506pt too wide) in paragraph at lines 187--198
 \T1/aer/m/n/9 these rea-sons we chose to fo-cus on search-ing for L[]T[]Xexress
 ions
  []
 
-LaTeX Font Info:    Try loading font information for T1+aett on input line 210.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 208.
 
 (/usr/share/texlive/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
-Overfull \hbox (7.15085pt too wide) in paragraph at lines 213--214
+Overfull \hbox (7.15085pt too wide) in paragraph at lines 211--212
 []\T1/aer/m/n/9 After this lex-i-cal pre-pro-cess-ing step, the ex-pres-sion is
  passed
  []
@@ -316,46 +316,44 @@ Overfull \hbox (7.15085pt too wide) in paragraph at lines 213--214
 
 Underfull \vbox (badness 1558) has occurred while \output is active []
 
- [2 <./img/subtree.png>] <img/exprtree.png, id=24, 632.3625pt x 602.25pt>
+ [2 <./img/subtree.png>] <img/exprtree.png, id=23, 632.3625pt x 602.25pt>
 File: img/exprtree.png Graphic file (type png)
 
 <use img/exprtree.png>
-Package pdftex.def Info: img/exprtree.png used on input line 226.
+Package pdftex.def Info: img/exprtree.png used on input line 224.
 (pdftex.def)             Requested size: 126.47026pt x 120.44786pt.
 
-Overfull \hbox (1.51587pt too wide) in paragraph at lines 265--269
+Overfull \hbox (1.51587pt too wide) in paragraph at lines 274--278
 []\T1/aer/m/n/9 1. PUT EX-AM-PLES HERE 2. PUT COM-MENTS HERE
  []
 
-[3 <./img/exprtree.png>] (build/sig-alternate.bbl) [4
-
-] (build/sig-alternate.aux) ) 
+[3 <./img/exprtree.png>] (build/sig-alternate.bbl) [4] (build/sig-alternate.aux
+) ) 
 Here is how much of TeX's memory you used:
- 2827 strings out of 494985
- 35831 string characters out of 6180356
+ 2826 strings out of 494985
+ 35824 string characters out of 6180356
  99407 words of memory out of 5000000
  5963 multiletter control sequences out of 15000+600000
- 52170 words of font info for 71 fonts, out of 8000000 for 9000
+ 51034 words of font info for 70 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 42i,12n,28p,853b,312s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/bas
-e/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmti9.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helv
-etic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on build/sig-alternate.pdf (4 pages, 191720 bytes).
+ 42i,10n,28p,848b,250s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mti9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/urw/times/utmr8a.pfb>
+Output written on build/sig-alternate.pdf (4 pages, 186260 bytes).
 PDF statistics:
- 79 PDF objects out of 1000 (max. 8388607)
- 54 compressed objects within 1 object stream
+ 75 PDF objects out of 1000 (max. 8388607)
+ 51 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
