@@ -1,0 +1,253 @@
+x^2 + 4x - 10 : 0
+(4 * x)/(7y) : 1
+a + b + c : 2
+(a + b + c) * d : 3
+(a + b) * (c + d) * e : 4
+3\alpha + x : 5
+3\alpha + y : 6
+4\gamma + 70 : 7
+(x + 2)(x-2) : 8
+x^2 - 4 : 9
+x + 1 : 10
+y - 5 : 11
+b + a + c : 12
+x + y + z : 13
+3\cdot\sin(x) : 14
+\sin(x) + \sin(y) : 15
+y\cdot\sin(54) : 16
+(a+b)\cdot\cos(\pi) : 17
+\sin(a+b) : 18
+\int \sin(x) : 19
+\int (a+b) : 20
+(x+y)^2 - 2\cdot x \cdot y : 21
+\int \sin(x) : 22
+\int \sin(\alpha) : 23
+\int \cos(x) : 24
+\sum x^3 : 25
+\int x^3 : 26
+\sum (x^3 + y+ z) : 27
+\sum (2*x^3) : 28
+
+--------
+Search String:  \int x^3
+\sum x^3  with priority  12
+\int x^3  with priority  12
+x^2 + 4x - 10  with priority  6
+x^2 - 4  with priority  6
+\sum (x^3 + y+ z)  with priority  6
+\sum (2*x^3)  with priority  6
+(x+y)^2 - 2\cdot x \cdot y  with priority  4
+(4 * x)/(7y)  with priority  2
+3\alpha + x  with priority  2
+3\alpha + y  with priority  2
+4\gamma + 70  with priority  2
+(x + 2)(x-2)  with priority  2
+x + 1  with priority  2
+y - 5  with priority  2
+3\cdot\sin(x)  with priority  2
+y\cdot\sin(54)  with priority  2
+a + b + c  with priority  1
+(a + b + c) * d  with priority  1
+(a + b) * (c + d) * e  with priority  1
+b + a + c  with priority  1
+x + y + z  with priority  1
+\sin(x) + \sin(y)  with priority  1
+(a+b)\cdot\cos(\pi)  with priority  1
+\sin(a+b)  with priority  1
+\int \sin(x)  with priority  1
+\int (a+b)  with priority  1
+\int \sin(x)  with priority  1
+\int \sin(\alpha)  with priority  1
+\int \cos(x)  with priority  1
+
+--------
+Search String:  3+x+y
+\sum (x^3 + y+ z)  with priority  10
+a + b + c  with priority  9
+(a + b + c) * d  with priority  9
+(x + 2)(x-2)  with priority  9
+x + 1  with priority  9
+b + a + c  with priority  9
+x + y + z  with priority  9
+3\alpha + x  with priority  7
+3\alpha + y  with priority  7
+(x+y)^2 - 2\cdot x \cdot y  with priority  7
+(a + b) * (c + d) * e  with priority  6
+(a+b)\cdot\cos(\pi)  with priority  6
+\sin(a+b)  with priority  6
+\int (a+b)  with priority  6
+4\gamma + 70  with priority  5
+x^2 + 4x - 10  with priority  3
+(4 * x)/(7y)  with priority  3
+x^2 - 4  with priority  3
+y - 5  with priority  3
+3\cdot\sin(x)  with priority  3
+y\cdot\sin(54)  with priority  3
+\sum x^3  with priority  3
+\int x^3  with priority  3
+\sum (2*x^3)  with priority  3
+\sin(x) + \sin(y)  with priority  2
+\int \sin(x)  with priority  2
+\int \sin(x)  with priority  2
+\int \sin(\alpha)  with priority  2
+\int \cos(x)  with priority  2
+
+--------
+Search String:  z+x+y
+a + b + c  with priority  15
+(a + b + c) * d  with priority  15
+b + a + c  with priority  15
+x + y + z  with priority  15
+\sum (x^3 + y+ z)  with priority  15
+(a + b) * (c + d) * e  with priority  9
+3\alpha + x  with priority  9
+3\alpha + y  with priority  9
+(x + 2)(x-2)  with priority  9
+x + 1  with priority  9
+(a+b)\cdot\cos(\pi)  with priority  9
+\sin(a+b)  with priority  9
+\int (a+b)  with priority  9
+(x+y)^2 - 2\cdot x \cdot y  with priority  9
+x^2 + 4x - 10  with priority  3
+(4 * x)/(7y)  with priority  3
+4\gamma + 70  with priority  3
+x^2 - 4  with priority  3
+y - 5  with priority  3
+3\cdot\sin(x)  with priority  3
+\sin(x) + \sin(y)  with priority  3
+y\cdot\sin(54)  with priority  3
+\int \sin(x)  with priority  3
+\int \sin(x)  with priority  3
+\int \sin(\alpha)  with priority  3
+\int \cos(x)  with priority  3
+\sum x^3  with priority  3
+\int x^3  with priority  3
+\sum (2*x^3)  with priority  3
+
+--------
+Search String:  a+b
+a + b + c  with priority  6
+(a + b + c) * d  with priority  6
+(a + b) * (c + d) * e  with priority  6
+3\alpha + x  with priority  6
+3\alpha + y  with priority  6
+(x + 2)(x-2)  with priority  6
+x + 1  with priority  6
+b + a + c  with priority  6
+x + y + z  with priority  6
+(a+b)\cdot\cos(\pi)  with priority  6
+\sin(a+b)  with priority  6
+\int (a+b)  with priority  6
+(x+y)^2 - 2\cdot x \cdot y  with priority  6
+\sum (x^3 + y+ z)  with priority  6
+x^2 + 4x - 10  with priority  2
+(4 * x)/(7y)  with priority  2
+4\gamma + 70  with priority  2
+x^2 - 4  with priority  2
+y - 5  with priority  2
+3\cdot\sin(x)  with priority  2
+\sin(x) + \sin(y)  with priority  2
+y\cdot\sin(54)  with priority  2
+\int \sin(x)  with priority  2
+\int \sin(x)  with priority  2
+\int \sin(\alpha)  with priority  2
+\int \cos(x)  with priority  2
+\sum x^3  with priority  2
+\int x^3  with priority  2
+\sum (2*x^3)  with priority  2
+
+--------
+Search String:  (a+b)
+a + b + c  with priority  6
+(a + b + c) * d  with priority  6
+(a + b) * (c + d) * e  with priority  6
+3\alpha + x  with priority  6
+3\alpha + y  with priority  6
+(x + 2)(x-2)  with priority  6
+x + 1  with priority  6
+b + a + c  with priority  6
+x + y + z  with priority  6
+(a+b)\cdot\cos(\pi)  with priority  6
+\sin(a+b)  with priority  6
+\int (a+b)  with priority  6
+(x+y)^2 - 2\cdot x \cdot y  with priority  6
+\sum (x^3 + y+ z)  with priority  6
+x^2 + 4x - 10  with priority  2
+(4 * x)/(7y)  with priority  2
+4\gamma + 70  with priority  2
+x^2 - 4  with priority  2
+y - 5  with priority  2
+3\cdot\sin(x)  with priority  2
+\sin(x) + \sin(y)  with priority  2
+y\cdot\sin(54)  with priority  2
+\int \sin(x)  with priority  2
+\int \sin(x)  with priority  2
+\int \sin(\alpha)  with priority  2
+\int \cos(x)  with priority  2
+\sum x^3  with priority  2
+\int x^3  with priority  2
+\sum (2*x^3)  with priority  2
+
+--------
+Search String:  \sin(a)
+3\cdot\sin(x)  with priority  3
+\sin(x) + \sin(y)  with priority  3
+(a+b)\cdot\cos(\pi)  with priority  3
+\int \sin(x)  with priority  3
+\int \sin(x)  with priority  3
+\int \sin(\alpha)  with priority  3
+\int \cos(x)  with priority  3
+x^2 + 4x - 10  with priority  1
+(4 * x)/(7y)  with priority  1
+a + b + c  with priority  1
+(a + b + c) * d  with priority  1
+(a + b) * (c + d) * e  with priority  1
+3\alpha + x  with priority  1
+3\alpha + y  with priority  1
+4\gamma + 70  with priority  1
+(x + 2)(x-2)  with priority  1
+x^2 - 4  with priority  1
+x + 1  with priority  1
+y - 5  with priority  1
+b + a + c  with priority  1
+x + y + z  with priority  1
+y\cdot\sin(54)  with priority  1
+\sin(a+b)  with priority  1
+\int (a+b)  with priority  1
+(x+y)^2 - 2\cdot x \cdot y  with priority  1
+\sum x^3  with priority  1
+\int x^3  with priority  1
+\sum (x^3 + y+ z)  with priority  1
+\sum (2*x^3)  with priority  1
+
+--------
+Search String:  a
+x^2 + 4x - 10  with priority  1
+(4 * x)/(7y)  with priority  1
+a + b + c  with priority  1
+(a + b + c) * d  with priority  1
+(a + b) * (c + d) * e  with priority  1
+3\alpha + x  with priority  1
+3\alpha + y  with priority  1
+4\gamma + 70  with priority  1
+(x + 2)(x-2)  with priority  1
+x^2 - 4  with priority  1
+x + 1  with priority  1
+y - 5  with priority  1
+b + a + c  with priority  1
+x + y + z  with priority  1
+3\cdot\sin(x)  with priority  1
+\sin(x) + \sin(y)  with priority  1
+y\cdot\sin(54)  with priority  1
+(a+b)\cdot\cos(\pi)  with priority  1
+\sin(a+b)  with priority  1
+\int \sin(x)  with priority  1
+\int (a+b)  with priority  1
+(x+y)^2 - 2\cdot x \cdot y  with priority  1
+\int \sin(x)  with priority  1
+\int \sin(\alpha)  with priority  1
+\int \cos(x)  with priority  1
+\sum x^3  with priority  1
+\int x^3  with priority  1
+\sum (x^3 + y+ z)  with priority  1
+\sum (2*x^3)  with priority  1
