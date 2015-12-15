@@ -210,6 +210,8 @@ if __name__ == '__main__':
       i+=1
   
   search('\int x^3', docs)
+  search('(a+b)*(x^3 + \sin(x))', docs)
+  print getLeafRoots('(a+b)*(x^3 + \sin(x))')
   search('3+x+y', docs)
   search('z+x+y', docs)
   search('a+b', docs)
