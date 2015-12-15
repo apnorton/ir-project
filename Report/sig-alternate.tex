@@ -21,8 +21,7 @@
 %\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
 % --- End of Author Metadata ---
 
-\title{Math Retrieval Using Leaf-Root Expression Trees
-Format}
+\title{Math Retrieval Using Leaf-Root Expression Trees} 
 
 \numberofauthors{2} %  in this sample file, there are a *total*
 % of EIGHT authors. SIX appear on the 'first-page' (for formatting
@@ -161,7 +160,7 @@ represent specific expressions for which all variables have a
 substituted value. A simple example tree is shown in the next figure.
 \begin{figure}
 	\centering
-	\includegraphics{subtree}
+    \includegraphics[scale=0.75]{subtree}
 	\caption{A sample substitution tree}
 \end{figure}
 This structure stores relationships between abstract expression forms.
@@ -173,12 +172,16 @@ enabled by the tree structures.
 
 The approach that most directly influenced our implementation is an
 alternative method for using trees to store structure. Furthering our
-intuition that a parse trees could be a useful representation of structure
+intuition that parse trees could be a useful representation of structure
 the particular implementation by Zhong provided inspiration and 
 solutions to some technical challenges.\cite{zhong:cowpie}
 
+Despite these recent innovations it is interesting to note that the top performers on 
+MIR tasks, such as the main task of NTCIR11 are still acheived by traditional text based
+systems with modifications.
+
 \section{Proposed Solution}
-There are three general components to our proposed solution.
+There are a number of general components to our proposed solution.
 Each will be discussed separately and the particular 
 decisions we made will be justified. 
 
@@ -202,13 +205,70 @@ purely change the display of an expression and not the structure or
 content are removed. Second, semantically similar operations are grouped roughly into equivalence classes and occurrences are replaced with a single symbol. For example, "\textbackslash pmod, \textbackslash bmod, and \textbackslash mod" which have the same meaning but different 
 presentations are replaced with the common command "MOD". Other
 operations that might have clear differences in meaning but are also
-similar in some way such as "+, \textbackslash sum, and \textbackslash bigoplus" are replaced with the common command "SUM".
+similar in some way such as "+, \textbackslash sum, and \textbackslash bigoplus" are replaced with the common command "SUM". Numbers are all normalized to the symbol "NUM" and variables to "VAR".
 
+After this preprocessing step the expression is passed through a parser designed to recognize latex constructs. We used Antlr to generate the parse from a language specification. A complete specification was included in the Cowpie project and we used a modified subset for simplicity. 
 
-Because the entire article is contained in
-the \textbf{document} environment, you can indicate the
-start of a new paragraph with a blank line in your
-input file; that is why this sentence forms a separate paragraph.
+\subsection{Index Construction}
+After the expressions have been processed we are left with a collection of tree structures that need to be organized into some way to allow effective structure based search. This is the key component of the leaf-root tree approach. Each expression is given a unique ID number and its tree is decomposed into a collection of leaf root paths. For example consider the parse tree displayed in figure 2\ref{fig2} corresponding to the expression "2 * (3 + 4)". After normalization the tree is decomposed into the two distinct paths "2$\rightarrow$ TIMES" and "NUM$\rightarrow$ PLUS$\rightarrow$ TIMES". These paths provide a loose approximation of the structure of the tree as a whole. 
+There are a few immediate advantages of using parse trees and in particular leaf-node paths. The first is that they assume commutativity of operations. If the expression in figure two was instead "2 * (4 + 3)" its representation as a collection of leaf-root paths would be unchanged. Although there are obvious exceptions this is a good general assumption as it is true for most common operators.
+The second and more important property is that it inherently supports searching for subexpressions as they
+form subtrees. Given two expressions $E_1, E_2$, if $E_1$ is a subexpression of $E_2$ then all of its
+paths will also be subpaths of $E2$'s paths. Any tree that contains a subexpression of the form NUM * (NUM + NUM) is guaranteed to have these paths as subpaths. 
+It's important to note that the paths do not provide a complete description of the tree, some information is lost in their creation. That is, it is possible to have trees that represent distinct expressions but which decompose into the same paths. Thus the paths are used as a first filter to reduce search space rather than a final retrieval mechanism. In order to take advantage of the paths, we structure the index as a filesystem. In our implementation we used the computer's actual filesystem for convenience but this could be implemented in a ore efficient way for this dedicated task. Sub-directories are created for each node on the path, beginning at the leaves and the ID of the expression is stored at the deepest locations. For example, the sample expression would have its ID stored in ./NUM/TIMES and ./NUM/PLUS/TIMES. 
+
+\begin{figure}
+    \label{fig2}
+	\centering
+    \includegraphics[scale=0.2]{exprtree}
+	\caption{A sample expression tree}
+\end{figure}
+
+The IDs themselves are used as keys to lookup information about the particular expression in an external structure. This might include the original typesetting, the actual parse-tree, the source webpage, or other relevant information depending on the context that the search is operating in.
+
+\subsection{Queries and Retrieval}
+As explained in the representation section, queries are accepted in \LaTeX format. They 
+are subjected to the same process of normalization and parsing as the corpus expressions
+are and decomposed into leaf-root paths. In order to retrieve relevant expressions from the corpus
+we just traverse the index according to each of paths. Continuing the example from above, assume that
+the index contains only the expression from figure 2 and that a user has queried for "5 + 2" which 
+breaks down to the single path "NUM$\rightarrow$ PLUS". We first traverse the filesystem to the location
+./NUM/PLUS and then return the merged contents of all of the subdirectories. This process gives us every expression for which the query is a sub-part. 
+
+Depending on the query, and particularly for short queries, the returned set of expressions is a potentially
+significant portion of the entire corpus. Thus a method is needed for ranking within this filtered set. We 
+use a few different approaches based on the structure of the trees in order to rank, and we also reintroduce
+the symbolic information removed in the first parsing step in order to compare the literal terms of the query.
+
+DESCRIBE RANKING PROCESS IM NOT TOTALLY SURE HOW IT ACTUALLY WORKS.
+
+\section{Experiment}
+The lack of an annotated corpus and the difficulty involved in creating one put limitations on our ability
+to use standard metrics to evaluate the system's performance. As a results our testing procedure consisted of
+selecting a "target" expression and then searching for modified versions of the expression or manually created expressions that we deemed "relevant" and observing if the target expression is returned. Some examples are presented here and general comments are given. 
+
+1. PUT EXAMPLES HERE
+2. PUT COMMENTS HERE
+3. IF POSSIBLE PLEASE PUT SOME EXAMPLES OF QUERY EXPANSION ACTUALLY DOING SOMETHING USEFUL HERE.
+4. JUSTIFICATION THAT WE DID SOMETHING OTHER THAN POORLY REIMPLEMENT WOULD BE V HELPFUL.
+
+\section{Limitations}
+There are a number of limitations associated with our work here. Some of them are inherent to the field,
+some are a result of our choice of approach, and some are of our particular implementation. Due to the newness
+of the field there is a scarcity of mature tools for solving this kind of problem. There are also few 
+established or annotated datasets available. Due in particular to the problem of identifying mathematical
+synonyms, it is difficult to create relevance judgements for arbitrary queries. 
+
+1. BETTER RANKING FORMULA - preserve symbols, e.g. x + y = x + 3 <- x
+2. Better index - don't use native fs
+4. Only does symbols not symbols and words.
+
+3. Our grammar/parsing is weak and limits functionality to a not very interesting subset of the data.
+
+\section{Conclusions}
+1. I DON'T KNOW WHAT OUR CONCLUSIONS ARE. CONCLUSIONS ARE PROJECTS SUCK EXAMS4LYFE.
+
+2. GET THE BIBFILE WORKING I'M NOT SURE HOW IT IS SUPPOSED TO BE.
 
 \subsection{Citations}
 Citations to articles \cite{bowman:reasoning,
@@ -251,19 +311,14 @@ examples only.
 %\end{document}  % This is where a 'short' article might terminate
 
 %ACKNOWLEDGMENTS are optional
-\section{Acknowledgments}
-This section is optional; it is a location for you
-to acknowledge grants, funding, editing assistance and
-what have you.  In the present case, for example, the
-authors would like to thank Gerald Murray of ACM for
-his help in codifying this \textit{Author's Guide}
-and the \textbf{.cls} and \textbf{.tex} files that it describes.
+%\section{Acknowledgments}
+%I'd like to thank the based god.
 
 %
 % The following two commands are all you need in the
 % initial runs of your .tex file to
 % produce the bibliography for the citations in your paper.
 \bibliographystyle{abbrv}
-\bibliography{sigproc}  % sigproc.bib is the name of the Bibliography in this case
+\bibliography{irbib}  % sigproc.bib is the name of the Bibliography in this case
 % That's all folks!
 \end{document}
